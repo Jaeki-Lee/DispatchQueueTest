@@ -7,5 +7,6 @@
         <page name='DispatchGroup'/>
         <page name='DispatchWorkItem'/>
         <page name='Semaphore'/>
+        <page name='AsyncDispatchGroup'/>
     </pages>
 </playground>

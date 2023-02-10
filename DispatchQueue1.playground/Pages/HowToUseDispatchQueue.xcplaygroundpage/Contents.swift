@@ -2,6 +2,8 @@
 
 import UIKit
 import Foundation
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 /*
  반드시 메인큐에서 처리해야하는 작업
@@ -52,6 +54,13 @@ import Foundation
 //}
 
 
+
+
+let image = UIImage(named: "dark_road_small.jpg")
+
+//오랜시간이 걸리는 작업
+let thiltedImage = tiltShift(image: image)
+
 /*
 동기적 함수를 비동기적 함수로 바꿔서 지속적으로 사용할 수 있도록 만들기 결국 (기존 함수의 내용 +)
 1) 직접적으로 작업을 실행할 큐와
@@ -60,10 +69,6 @@ import Foundation
 4) 에러처리에 대한 내용
  */
 
-func thiltShift(image: UIImage) -> UIImage {
-    return UIImage
-}
-
 func asyncTiltShift(_ inputImage: UIImage?, runQueue: DispatchQueue, completionQueue: DispatchQueue, completion: @escaping (UIImage?, Error?) -> ()) {
     
     //serial 큐로 한 스레드에 작업 연속적으로 할당
@@ -71,7 +76,7 @@ func asyncTiltShift(_ inputImage: UIImage?, runQueue: DispatchQueue, completionQ
         var error: Error?
         error = .none
         
-        let outputImage = thiltShift(image: inputImage)
+        let outputImage = tiltShift(image: inputImage)
         
         //outputImage task 가 끝났을때
         completionQueue.async {
@@ -89,7 +94,7 @@ let resultQueue = DispatchQueue.global()
 asyncTiltShift(image, runQueue: workingQueue, completionQueue: resultQueue) { image, error in
     image
     print("★★★비동기작업의 실제 종료시점★★★")
-    //    PlaygroundPage.current.finishExecution()     //실제 모든 작업이 끝나고 플레이그라운드 종료하기 위함
+    PlaygroundPage.current.finishExecution()     //실제 모든 작업이 끝나고 플레이그라운드 종료하기 위함
 }
 
 
