@@ -27,7 +27,6 @@ for name in imageNames {
     guard let url = URL(string: "\(base)\(name)") else { continue }
     
     group.enter()
-    
     //semaphore 1개 사용 //4 개가 다 사용되면 다시 사용될때까지 대기 하는 듯
     downloadSemaphore.wait()
     

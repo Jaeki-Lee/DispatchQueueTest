@@ -5,8 +5,7 @@
         <page name='KindOfDispatchQueue'/>
         <page name='HowToUseDispatchQueue'/>
         <page name='DispatchGroup'/>
-        <page name='DispatchWorkItem'/>
         <page name='Semaphore'/>
-        <page name='AsyncDispatchGroup'/>
+        <page name='ThreadSafe'/>
     </pages>
 </playground>
